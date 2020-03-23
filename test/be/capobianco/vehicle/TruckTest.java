@@ -46,7 +46,7 @@ public class TruckTest {
   @Test
   void testSetterWithValidValues() {
     this.actual.setPassengers(10);
-    this.actual.setSlots(3.0);
+    assertDoesNotThrow(() -> actual.setSlots(3.0));
 
     assertEquals(3.0, this.actual.getSlots());
     assertEquals(10, this.actual.getPassengers());

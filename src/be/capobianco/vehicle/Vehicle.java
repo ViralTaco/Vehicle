@@ -1,5 +1,7 @@
 package be.capobianco.vehicle;
 
+import be.capobianco.vehicle.exception.TruckException;
+
 /**
  * @author Capobianco Anthony
  */
@@ -19,7 +21,7 @@ public abstract class Vehicle {
     return this.slots;
   }
 
-  public void setSlots(final double slots) {
+  public void setSlots(final double slots) throws Exception {
     this.slots = slots;
   }
 

@@ -1,5 +1,7 @@
 package be.capobianco.vehicle;
 
+import be.capobianco.vehicle.exception.TruckException;
+
 public class Truck extends Vehicle {
 
   /**
@@ -10,10 +12,6 @@ public class Truck extends Vehicle {
    * Maximum slots taken by a Truck on a Vehicle.
    */
   public static final int maxSlots = 5;
-  private static final IllegalArgumentException invalidSlotCount =
-      new IllegalArgumentException(
-          String.format("Truck takes from %d to %d Vehicle slots", minSlots, maxSlots));
-
   /**
    * This constructor assumes worst case scenario. ie: this.slots == Truck.maxSlots;
    */
@@ -23,9 +21,9 @@ public class Truck extends Vehicle {
 
   /**
    * @param slots The number of slots taken by the Truck in a Boat.
-   * @throws IllegalArgumentException if number of Truck.minSlots > slots > Truck.maxSlots
+   * @throws TruckException if number of Truck.minSlots > slots > Truck.maxSlots
    */
-  public Truck(final double slots) throws IllegalArgumentException {
+  public Truck(final double slots) throws TruckException {
     this();
     this.setSlots(slots);
   }
@@ -33,10 +31,10 @@ public class Truck extends Vehicle {
   /**
    * @param slots      The number of slots taken by the Truck in a Boat.
    * @param passengers The number of passengers
-   * @throws IllegalArgumentException if number of Truck.minSlots > slots > Truck.maxSlots
+   * @throws TruckException if number of Truck.minSlots > slots > Truck.maxSlots
    */
   public Truck(final double slots, final int passengers)
-      throws IllegalArgumentException {
+  throws TruckException {
     this(slots);
     this.setPassengers(passengers);
   }
@@ -45,14 +43,17 @@ public class Truck extends Vehicle {
    * Sets super.slots
    *
    * @param slots The number of slots taken by the Truck in a Boat.
-   * @throws IllegalArgumentException if number of Truck.minSlots > slots > Truck.maxSlots
+   * @throws TruckException if number of Truck.minSlots > slots > Truck.maxSlots
    */
-  @Override
   public void setSlots(final double slots)
-      throws IllegalArgumentException {
+  throws TruckException {
     if (slots < Truck.minSlots || slots > Truck.maxSlots) {
-      throw Truck.invalidSlotCount;
+      throw new TruckException(slots);
     }
-    super.setSlots(slots);
+    try {
+      super.setSlots(slots);
+    } catch (Exception e) {
+      throw new TruckException();
+    }
   }
 }
