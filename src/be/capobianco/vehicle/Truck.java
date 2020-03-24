@@ -3,20 +3,13 @@ package be.capobianco.vehicle;
 import be.capobianco.vehicle.exception.TruckException;
 
 public class Truck extends Vehicle {
-
-  /**
-   * Minimum slots taken by a Truck on a Vehicle.
-   */
+  /** Minimum slots taken by a Truck on a Vehicle. */
   public static final int minSlots = 3;
-  /**
-   * Maximum slots taken by a Truck on a Vehicle.
-   */
+  /** Maximum slots taken by a Truck on a Vehicle. */
   public static final int maxSlots = 5;
-  /**
-   * This constructor assumes worst case scenario. ie: this.slots == Truck.maxSlots;
-   */
-  public Truck() {
-    super(maxSlots);
+
+  private Truck() {
+    super();
   }
 
   /**
@@ -45,15 +38,13 @@ public class Truck extends Vehicle {
    * @param slots The number of slots taken by the Truck in a Boat.
    * @throws TruckException if number of Truck.minSlots > slots > Truck.maxSlots
    */
-  public void setSlots(final double slots)
-  throws TruckException {
+  public void setSlots(final double slots) throws TruckException {
     if (slots < Truck.minSlots || slots > Truck.maxSlots) {
       throw new TruckException(slots);
-    }
-    try {
-      super.setSlots(slots);
-    } catch (Exception e) {
+    } else if (!Double.isFinite(slots)) {
       throw new TruckException();
     }
+
+    super.setSlots(slots);
   }
 }
