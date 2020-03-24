@@ -2,7 +2,7 @@ package be.capobianco.vehicle.exception;
 
 import be.capobianco.vehicle.Truck;
 
-public class TruckException extends Exception {
+public class TruckException extends RuntimeException {
     private static final String slotRange =
         String.format("Truck expects a number of slots between %d and %d.",
                       Truck.minSlots,
@@ -13,7 +13,7 @@ public class TruckException extends Exception {
     }
 
     public TruckException(double actual) {
-        super(String.format("%s But received %d.",
+        super(String.format("%s But received %f.",
                             TruckException.slotRange,
                             actual));
     }
