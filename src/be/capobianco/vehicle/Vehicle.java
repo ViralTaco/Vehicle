@@ -1,9 +1,5 @@
 package be.capobianco.vehicle;
 
-import be.capobianco.vehicle.exception.TruckException;
-
-import static java.lang.Double.NaN;
-
 /**
  * @author Capobianco Anthony
  */
@@ -13,7 +9,7 @@ public abstract class Vehicle {
   private int passengers;
 
   public Vehicle() {
-    this.slots = NaN;
+    this.slots = Double.NaN;
     this.passengers = 0;
   }
   /**
