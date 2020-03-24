@@ -4,9 +4,9 @@ import be.capobianco.vehicle.exception.TruckException;
 
 public class Truck extends Vehicle {
   /** Minimum slots taken by a Truck on a Vehicle. */
-  public static final int minSlots = 3;
+  public static final double minSlots = 3.;
   /** Maximum slots taken by a Truck on a Vehicle. */
-  public static final int maxSlots = 5;
+  public static final double maxSlots = 5.;
 
   private Truck() {
     super();
